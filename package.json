@@ -1,30 +1,37 @@
 {
   "name": "arferg-ui",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start:dev": "parcel src/index.html -p 3000",
     "serve": "parcel serve dist/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html --dist-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
     "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "node-sass": "^5.0.0",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.32.8"
+    "babel-plugin-styled-components": "^1.12.0",
+    "parcel": "^2.0.0-beta.2"
   },
   "babel": {
     "presets": [
-      "env",
-      "react"
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "babel-plugin-styled-components"
     ]
   }
 }

@@ -3,7 +3,7 @@
 /.idea
 
 #parcel-bundler cache folder (used for dev server)
-/.cache
+/.parcel-cache
 
 # dependencies
 /node_modules
