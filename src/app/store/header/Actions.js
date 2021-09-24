@@ -4,12 +4,13 @@ import {
     GET_HEADER_DETAILS_REQUEST,
     GET_HEADER_DETAILS_SUCCESS
 } from "./Types"
+import swapiService from "../../services/SwapiService"
 
 export const getHeaderDetails = () => async (dispatch) => {
     try {
         dispatch({ type: GET_HEADER_DETAILS_REQUEST });
 
-        const response = await axios.get(`https://swapi.dev/api/people/1`)
+        const response = await swapiService.getStarWarsPerson("123")
         return dispatch({
             type: GET_HEADER_DETAILS_SUCCESS,
             payload: response.data

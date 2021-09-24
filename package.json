@@ -12,8 +12,7 @@
     "serve": "parcel serve dist/index.html",
     "build": "parcel build src/index.html --dist-dir dist",
     "test": "jest",
-    "lint": "eslint src/*",
-  "husky": ""
+    "lint": "eslint src/*"
   },
   "dependencies": {
     "axios": "^0.21.4",
