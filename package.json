@@ -2,17 +2,31 @@
   "name": "arferg-ui",
   "version": "1.0.0",
   "main": "index.html",
+  "homepage": "/pages",
+  "proxy": "http://localhost:8080",
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
     "start:dev": "parcel src/index.html -p 3000",
     "serve": "parcel serve dist/index.html",
     "build": "parcel build src/index.html --dist-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint src/*",
+  "husky": ""
   },
   "dependencies": {
+    "axios": "^0.21.4",
+    "connected-react-router": "^6.9.1",
+    "history": "^5.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
+    "react-toast-notifications": "^2.5.1",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {
@@ -20,9 +34,27 @@
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
     "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/react-hooks": "^5.1.3",
+    "axios-mock-adapter": "^1.20.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^27.1.1",
     "babel-plugin-styled-components": "^1.12.0",
-    "parcel": "^2.0.0-beta.2"
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.2",
+    "jest": "^27.1.1",
+    "parcel": "^2.0.0-beta.2",
+    "redux-mock-store": "^1.5.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   },
   "babel": {
     "presets": [
@@ -33,5 +65,11 @@
     "plugins": [
       "babel-plugin-styled-components"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "babel-jest"
+    },
+    "testEnvironment": "jsdom"
   }
 }
