@@ -3,6 +3,7 @@ import "./header.scss"
 import Option from "./Option";
 import {ToastProvider} from "react-toast-notifications";
 import {getHeaderDetails} from "../../store/header/Actions";
+import useGetStarWarsPerson from "../../hooks/useGetStarWarsPerson";
 
 
 const Header = props => {
@@ -10,9 +11,15 @@ const Header = props => {
         options
     } = props
 
+    const {data, isError, isLoading} = useGetStarWarsPerson("123")
+
     useEffect(async () => {
         getHeaderDetails()
     }, [])
+
+    if (isLoading) return "Loading...";
+
+    if (isError) return "An error has occurred: " + error.message;
 
     return (
         <ToastProvider>

@@ -10,7 +10,9 @@ import {createBrowserHistory} from "history"
 import {Provider} from "react-redux"
 import {applyMiddleware, compose, createStore} from "redux"
 import reducers from "./app/store/ReduxReducers"
-import thunk from "redux-thunk";
+import thunk from "redux-thunk"
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { ReactQueryDevtools } from "react-query/devtools"
 
 const HelloMessage = (props) => {
     return <div className="container">
@@ -30,20 +32,25 @@ const history = createBrowserHistory({
 
 const store = createStore(reducers(history), composeEnhancers(applyMiddleware(thunk, routerMiddleware(history))));
 
+const queryClient = new QueryClient()
+
 render(
     <Provider store={store}>
-        <BrowserRouter>
-            <div className={"app-container"}>
-                <ConnectedRouter history={history}>
-                    <Switch>
-                        <Route exact path="/" component={HelloMessage} />
-                        {/*<Route exact path={PagePaths.ACTIVITY} component={AllDocumentActivity} />*/}
-                        <Route path="/404" component={PageNotFound} />
-                        <Redirect to="/404" />
-                    </Switch>
-                </ConnectedRouter>
-            </div>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <div className={"app-container"}>
+                    <ConnectedRouter history={history}>
+                        <Switch>
+                            <Route exact path="/" component={HelloMessage} />
+                            {/*<Route exact path={PagePaths.ACTIVITY} component={AllDocumentActivity} />*/}
+                            <Route path="/404" component={PageNotFound} />
+                            <Redirect to="/404" />
+                        </Switch>
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </ConnectedRouter>
+                </div>
+            </BrowserRouter>
+        </QueryClientProvider>
     </Provider>,
     document.getElementById("root")
 )
